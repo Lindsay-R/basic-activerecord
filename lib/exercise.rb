@@ -133,9 +133,42 @@ require "./lib/order"
 # orders = Order.where(customer_id: 2)
 # p Orderitem.joins(:item, :order)
 
-p Orderitem.all.count
+# p Orderitem.all.count
 
 
+
+#----------------In class notes---------------
+
+# order = Order.first
+# p order
+# p order.id
+# p order.customer.name
+# p order.customer.city
+
+
+
+# customer3 = Customer.where(id:3).first
+# p customer3.name
+# p customer3.city
+# p customer3.orders
+
+
+#----------------In class notes---------------
+
+
+#display all the item names from all the orders that have customer id = 2
+Item.joins(orderitems: [:order]).where(orders: {customer_id: 2}).uniq.each do |item|
+  puts "ID:#{item.id} Name:#{item.name}"
+end
+
+p Item.joins(orderitems: [:order]).where(orders: {customer_id: 2})#.to_sql
+
+
+#display all customer ids that have ordered the boot02 item (i.e. item.id = 8)
+puts "Who has ordered item_id=8(boot02)..."
+Customer.joins(orders: [:orderitems]).where(orderitems: {item_id: 8}).uniq.each do |customer|
+  puts "Customer ID:#{customer.id} Customer Name:#{customer.name}"
+end
 
 
 
