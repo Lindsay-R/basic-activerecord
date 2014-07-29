@@ -171,4 +171,13 @@ Customer.joins(orders: [:orderitems]).where(orderitems: {item_id: 8}).uniq.each 
 end
 
 
+#display all customer names that have ordered the bike03 item
+puts "Who has ordered item_id=6(bike03)..."
+Customer.joins(orders: [:orderitems]).where(orderitems: {item_id: 6}).uniq.each do |customer|
+  puts "Customer ID:#{customer.id} Customer Name:#{customer.name}"
+end
+
+#display the total amount that customer ‘Evert Pfeffer’ has placed on orders for item bike03
+puts "Total amount customer_id=4(Evert Pfeffer) spent on item_id=6(bike03)"
+Orders.joins()
 
